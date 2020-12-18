@@ -1,13 +1,16 @@
 package com.fegoEdafe.SchoolSystem.model;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.persistence.*;
 
+@Qualifier("postgres")
 @Entity
 public class Students {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String firstame;
+    private String firstName;
     private String lastName;
     private String email;
 
@@ -16,8 +19,8 @@ public class Students {
         super();
     }
 
-    public Students(String firstame, String lastName, String email) {
-        this.firstame = firstame;
+    public Students(String firstName, String lastName, String email) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
@@ -30,12 +33,12 @@ public class Students {
         this.id = id;
     }
 
-    public String getFirstame() {
-        return firstame;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstame(String firstame) {
-        this.firstame = firstame;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {

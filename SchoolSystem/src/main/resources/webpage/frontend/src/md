@@ -1,0 +1,9 @@
+    <div>
+						   <label htmlFor="contactSubject">Subject</label>
+						   <input value='' type="text" defaultValue="" size="35" id="contactSubject" name="contactSubject" onChange=''/>
+                  </div>
+
+                  <div>
+                     <label htmlFor="contactMessage">Message <span className="required">*</span></label>
+                     <textarea value='' onChange='' cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
+                  </div>

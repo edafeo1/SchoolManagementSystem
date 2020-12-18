@@ -4,6 +4,7 @@ package com.fegoEdafe.SchoolSystem.services;
 import com.fegoEdafe.SchoolSystem.model.Students;
 import com.fegoEdafe.SchoolSystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class StudentService {
     }
 
     public void deleteStudentById(long id){
+
         studentRepository.deleteById(id);
 
 
@@ -44,7 +46,7 @@ public class StudentService {
                 .map(s -> {
                     long indexToReplace = id;
                     if(indexToReplace >= 0){
-                        studentRepository.save(new Students(student.getFirstame() , student.getLastName(), student.getEmail()));
+                        studentRepository.save(new Students(student.getFirstName() , student.getLastName(), student.getEmail()));
                         return 1;
                     }
                     return 0;
