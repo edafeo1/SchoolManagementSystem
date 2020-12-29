@@ -37,8 +37,8 @@ public class StudentController {
     
 
     @PutMapping(path = "{id}")
-    public void updateStudentById(@PathVariable("id") long id , Students student){
-        studentService.updateStudent(id, student );
+    public void updateStudentById(@PathVariable("id") long id ,@RequestBody Students student){
+        studentService.updateStudentById(id, student );
     }
 
     @PostMapping

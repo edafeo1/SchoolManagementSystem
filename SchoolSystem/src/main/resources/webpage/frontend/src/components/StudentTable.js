@@ -21,9 +21,9 @@ export default class StudentTable extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Student Lists</h2>
-                <table>
+            <section>
+                 <h2>Student Lists</h2>
+                <table className="studentTable">
                 
                 <thead>
                 <tr>
@@ -51,7 +51,7 @@ export default class StudentTable extends Component {
                 
 
             </table>
-        </div>
+            </section>
         )
     }
 }

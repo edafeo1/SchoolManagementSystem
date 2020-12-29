@@ -15,6 +15,10 @@ class StudentService  {
     getStudentById(studentId){
         return axios.get(StudentUrl + '/' + studentId); 
     }
+
+    updateStudentById(studentId, Student){
+        return axios.put(StudentUrl + '/' + studentId, Student); 
+    }
 }
 
 export default new StudentService();

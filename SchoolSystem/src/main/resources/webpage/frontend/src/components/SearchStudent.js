@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import StudentService from './services/StudentService';
 
-export default class UpdateStudentForm extends Component {
+export default class SearchStudent extends Component {
 
     constructor(props){
         super(props)
@@ -43,11 +43,11 @@ export default class UpdateStudentForm extends Component {
 
     render() {
         return (
-            <div>
+            <section>
         
 
                   <div>
-						   <label htmlFor="contactName">Select Student by ID <span className="required">*</span></label>
+						   <label htmlFor="contactName"> Enter Id to Search Student <span className="required">*</span></label>
 						   <input value={this.state.idToGet} type="text"  size="35" id="contactName" name="contactName" onChange={this.changeidToGet}/>
                   </div>
                   
@@ -59,7 +59,7 @@ export default class UpdateStudentForm extends Component {
                 
 
                   <h2>Selected Student By id</h2>
-                <table>
+                <table className="studentTable">
                 
                 <thead>
                 <tr>
@@ -86,7 +86,7 @@ export default class UpdateStudentForm extends Component {
 
             </table>
 
-        </div>
+        </section>
         )
     }
 }
