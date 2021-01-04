@@ -34,8 +34,9 @@ public class StudentService {
     }
 
     public void deleteStudentById(long id){
-
-        studentRepository.deleteById(id);
+        Students deleteStudent = studentRepository.findById(id).orElse(null);
+        assert deleteStudent != null;
+        studentRepository.delete(deleteStudent);
 
 
     }

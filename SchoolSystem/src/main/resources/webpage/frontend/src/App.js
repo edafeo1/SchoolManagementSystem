@@ -6,6 +6,7 @@ import StudentTable from './components/StudentTable';
 import SearchStudent from './components/SearchStudent';
 import AddStudent from './components/AddStudent';
 import UpdateStudent from './components/UpdateStudent';
+import UpdateById from './components/UpdateById';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
   <Route exact path="/addstudent" component={AddStudent}/>
   <Route exact path="/searchstudent" component={SearchStudent}/>
   <Route exact path="/updatestudent" component={UpdateStudent}/>
+  <Route exact path="/updatebyid/:id" component={UpdateById}/>
   </Switch>
   
   

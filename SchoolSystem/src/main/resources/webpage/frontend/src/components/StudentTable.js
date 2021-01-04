@@ -9,6 +9,10 @@ export default class StudentTable extends Component {
         this.state= {
             students: []
         }
+
+        this.addStudent = this.addStudent.bind(this);
+        this.editStudentById = this.editStudentById.bind(this);
+        this.deleteStudentById = this.deleteStudentById.bind(this);
     }
 
 
@@ -18,10 +22,24 @@ export default class StudentTable extends Component {
         });
     }
 
+    editStudentById(id){
+        this.props.history.push(`./updatebyid/${id}`);
+    }
+
+    deleteStudentById(id){
+        StudentService.deleteStudentById(id).then(res =>{
+            this.setState({students: this.state.students.filter(student => student.id !== id)});
+        });
+    }
+
+    addStudent(){
+        this.props.history.push('./addstudent');
+    }
+
 
     render() {
         return (
-            <section>
+            <section className="table-container">
                  <h2>Student Lists</h2>
                 <table className="studentTable">
                 
@@ -31,6 +49,7 @@ export default class StudentTable extends Component {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
 
@@ -44,6 +63,10 @@ export default class StudentTable extends Component {
                                 <td>{students.firstName}</td>
                                 <td>{students.lastName}</td>
                                 <td>{students.email}</td>
+                                <td>
+                                    <button onClick={()=> this.editStudentById(students.id)}>Update</button>
+                                    <button onClick={()=> this.deleteStudentById(students.id)}>Delete</button>
+                                </td>
                             </tr>
                         )
                     }
@@ -51,6 +74,7 @@ export default class StudentTable extends Component {
                 
 
             </table>
+            <button onClick={(this.addStudent)}>Add Student</button>
             </section>
         )
     }

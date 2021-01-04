@@ -19,6 +19,10 @@ class StudentService  {
     updateStudentById(studentId, Student){
         return axios.put(StudentUrl + '/' + studentId, Student); 
     }
+
+    deleteStudentById(studentId){
+        return axios.delete(StudentUrl + '/' + studentId); 
+    }
 }
 
 export default new StudentService();
