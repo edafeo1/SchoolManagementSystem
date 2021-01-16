@@ -1,12 +1,12 @@
 package com.fegoEdafe.SchoolSystem.Dto;
 
-public class AccountantDTO {
+public class UserRegisterationDTO {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    public AccountantDTO(String firstName, String lastName, String email, String password) {
+    public UserRegisterationDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

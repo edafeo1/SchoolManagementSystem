@@ -3,6 +3,8 @@ package com.fegoEdafe.SchoolSystem.services;
 
 import com.fegoEdafe.SchoolSystem.model.Students;
 import com.fegoEdafe.SchoolSystem.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,11 +17,61 @@ import java.util.Optional;
 public class StudentServiceImpl implements ImplementationService<Students> {
 //public class StudentServiceImpl extends DaoService<Students> implements StudentService {
 
+
+    @Autowired
     private final StudentRepository studentRepository;
 
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
+
+    @Override
+    public void Save(Students student) {
+        studentRepository.save(student);
+    }
+
+    @Override
+    public void update(Long id, Students student) {
+        Students updateStudent = studentRepository.findById(id).orElse(null);
+        updateStudent.setFirstName(student.getFirstName());
+        updateStudent.setLastName(student.getLastName());
+        updateStudent.setEmail(student.getEmail());
+
+        studentRepository.save(updateStudent);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        Students deleteStudent = studentRepository.findById(id).orElse(null);
+        assert deleteStudent != null;
+        studentRepository.delete(deleteStudent);
+    }
+
+    @Override
+    public Optional<Students> findById(long id) {
+        return Optional.ofNullable(studentRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public List<Students> getAll() {
+        return (List<Students>) studentRepository.findAll();
+    }
+
+    @Override
+    public Page<Students> SelectPage(int pageNo) {
+        int size = 5;
+        Pageable page = PageRequest.of(pageNo, size);
+        return studentRepository.findAll(page);
+    }
+
+
+
+    @Override
+    public Page<Students> findAllByText(Pageable pageable, String text) {
+        return studentRepository.findAllBooks(pageable, text);
+    }
+
+
 
     /*
 
@@ -71,43 +123,14 @@ public class StudentServiceImpl implements ImplementationService<Students> {
  */
 
 
-    @Override
-    public Students Save(Students student) {
-        return studentRepository.save(student);
-    }
 
-    @Override
-    public void update(Long id, Students student) {
-        Students updateStudent = studentRepository.findById(id).orElse(null);
-        updateStudent.setFirstName(student.getFirstName());
-        updateStudent.setLastName(student.getLastName());
-        updateStudent.setEmail(student.getEmail());
-
-        studentRepository.save(updateStudent);
-    }
-
-    @Override
-    public void deleteById(long id) {
-        Students deleteStudent = studentRepository.findById(id).orElse(null);
-        assert deleteStudent != null;
-        studentRepository.delete(deleteStudent);
-    }
-
-    @Override
-    public Optional<Students> findById(long id) {
-        Students s = studentRepository.findById(id).orElse(null);
-        return Optional.ofNullable(s);
-    }
-
-    @Override
-    public List<Students> findAll() {
-        return studentRepository.findAll();
-    }
-
+/*
     @Override
     public List<Students> findAll(int pageNum) {
         // /students?page=0
         Pageable page = PageRequest.of(pageNum, 10, Sort.by("name"));
         return studentRepository.findAllBy(page);
     }
+
+ */
 }

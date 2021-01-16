@@ -2,23 +2,30 @@ package com.fegoEdafe.SchoolSystem.services;
 
 
 
+import com.fegoEdafe.SchoolSystem.Dto.UserRegisterationDTO;
 import com.fegoEdafe.SchoolSystem.model.Students;
-import org.springframework.http.ResponseEntity;
+import com.fegoEdafe.SchoolSystem.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ImplementationService<T> {
-    T Save(T t);
+    void Save(T t);
 
     void update(Long id, T t);
 
     void deleteById(long id);
 
     // Fix bug Here
-    Optional<Students> findById(long id);
+    Optional<T> findById(long id);
 
-    List<T> findAll();
+    List<T> getAll();
 
-    List<T> findAll(int pageNum);
+    Page<T> SelectPage(int pageNo);
+
+    Page<T > findAllByText(Pageable pageable, String text);
+
+
 }

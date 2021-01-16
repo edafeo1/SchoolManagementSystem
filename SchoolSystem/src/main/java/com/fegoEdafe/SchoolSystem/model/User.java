@@ -1,5 +1,6 @@
 package com.fegoEdafe.SchoolSystem.model;
-import java.util.Collection;
+import javax.persistence.*;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -21,7 +22,7 @@ public class User {
 
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -29,14 +30,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
 
-    private Collection<Roles> roles;
+    private Roles roles;
 
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, Collection<Roles> roles) {
+    public User(String firstName, String lastName, String email, String password, Roles roles) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,10 +75,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Collection<Roles> getRoles() {
+    public Roles getRoles() {
         return roles;
     }
-    public void setRoles(Collection<Roles> roles) {
+    public void setRoles(Roles roles) {
         this.roles = roles;
     }
 
