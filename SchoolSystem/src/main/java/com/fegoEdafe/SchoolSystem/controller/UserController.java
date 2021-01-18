@@ -28,31 +28,31 @@ public abstract class UserController implements GenericController<User> {
 
     @Override
     public Page<User> findAllByText(Pageable pageable, String Text) {
-        return null;
+        return userService.findAllByText(pageable, Text);
     }
 
     @Override
     public Page<User> findAll(int pageNo) {
-        return null;
+        return userService.SelectPage(pageNo);
     }
 
     @Override
     public Optional<User> findById(long id) {
-        return Optional.empty();
+        return userService.findById(id);
     }
 
     @Override
     public void deleteById(long id) {
-
+        userService.deleteById(id);
     }
 
     @Override
     public void updateById(long id, User user) {
-
+        userService.Save(user);
     }
 
 
-    public void SaveUser(UserRegisterationDTO userDto) {
-       // userService.Save(userDto);
+    public void SaveUser(User user) {
+       userService.Save(user);
     }
 }
